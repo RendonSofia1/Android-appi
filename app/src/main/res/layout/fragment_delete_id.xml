@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="30dp"
+    android:paddingTop="20dp"
+    android:paddingRight="30dp"
+    app:flow_verticalGap="5dp"
     tools:context=".fragments.deleteId">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="delete" />
+    <EditText
+        android:layout_width="330dp"
+        android:layout_height="65dp"
+        android:ems="10"
+        android:foregroundGravity="center_vertical"
+        android:inputType="text"
+        android:text="Id" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/deleteBtn"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="Eliminar" />
+
+
+</LinearLayout>

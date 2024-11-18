@@ -14,7 +14,7 @@
 
     <EditText
         android:id="@+id/idInput"
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
         android:layout_height="65dp"
         android:ems="10"
         android:foregroundGravity="center_vertical"
@@ -23,13 +23,13 @@
 
     <Button
         android:id="@+id/searchBtn"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:text="Buscar" />
 
     <EditText
         android:id="@+id/userIdInput"
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
         android:layout_height="65dp"
         android:layout_marginTop="30dp"
         android:ems="10"
@@ -38,7 +38,7 @@
 
     <EditText
         android:id="@+id/titleInput"
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
         android:layout_height="65dp"
         android:ems="10"
         android:foregroundGravity="center_vertical"
@@ -47,7 +47,7 @@
 
     <EditText
         android:id="@+id/bodyInput"
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
         android:layout_height="65dp"
         android:ems="10"
         android:foregroundGravity="center_vertical"
@@ -56,7 +56,7 @@
 
     <Button
         android:id="@+id/updateBtn"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:text="Actualizar" />
 
