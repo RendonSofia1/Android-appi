@@ -13,18 +13,20 @@
     tools:context=".fragments.deleteId">
 
     <EditText
+        android:id="@+id/deleteId"
         android:layout_width="330dp"
         android:layout_height="65dp"
         android:ems="10"
         android:foregroundGravity="center_vertical"
-        android:inputType="text"
-        android:text="Id" />
+        android:inputType="number"
+        android:hint="Id" />
 
     <Button
         android:id="@+id/deleteBtn"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:text="Eliminar" />
+
 
 
 </LinearLayout>

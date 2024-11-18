@@ -18,7 +18,7 @@
         android:layout_height="65dp"
         android:ems="10"
         android:inputType="text"
-        android:text="User id" />
+        android:hint="User id" />
 
     <EditText
         android:id="@+id/titleInput"
@@ -27,7 +27,7 @@
         android:ems="10"
         android:foregroundGravity="center_vertical"
         android:inputType="text"
-        android:text="Title" />
+        android:hint="Title" />
 
     <EditText
         android:id="@+id/bodyInput"
@@ -36,7 +36,7 @@
         android:ems="10"
         android:foregroundGravity="center_vertical"
         android:inputType="text"
-        android:text="Body" />
+        android:hint="Body" />
 
     <Button
         android:id="@+id/createBtn"
