@@ -1,150 +1,59 @@
 package com.narvasoft.my_appi;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText txtUser, txtTitle, txtBody;
-    Button btnEnviar;
+    TabLayout tabLayout;
+    ViewPager2 viewPager2;
+    ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        txtUser = findViewById(R.id.txtUser);
-        txtTitle = findViewById(R.id.txtTitle);
-        txtBody = findViewById(R.id.txtBody);
-        btnEnviar = findViewById(R.id.btnEnviar);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
-        btnEnviar.setOnClickListener(new View.OnClickListener() {
+        tabLayout = findViewById(R.id.tab_layout);
+        viewPager2 = findViewById(R.id.view_pager);
+        viewPagerAdapter = new ViewPagerAdapter(this);
+        viewPager2.setAdapter(viewPagerAdapter);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View view) {
-                getById();
-                enviarWs(txtTitle.getText().toString(), txtBody.getText().toString(), txtUser.getText().toString());
-                actualizarWs(txtTitle.getText().toString(), txtBody.getText().toString(), txtUser.getText().toString());
-                eliminarWs();
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
 
-    }
-
-    private void getById() {
-
-        String url = "https://jsonplaceholder.typicode.com/posts/2";
-
-        StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    txtUser.setText(jsonObject.getString("userId"));
-                    txtTitle.setText(jsonObject.getString("title"));
-                    txtBody.setText(jsonObject.getString("body"));
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Error", error.getMessage());
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tabLayout.getTabAt(position).select();
             }
         });
-        Volley.newRequestQueue(this).add(postResquest);
-    }
-
-    private void enviarWs(final String title, final String body, final String userId) {
-
-        String url = "https://jsonplaceholder.typicode.com/posts";
-
-        StringRequest postResquest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(MainActivity.this, "Respuesta del Servidor = " + response, Toast.LENGTH_LONG).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Error", error.getMessage());
-            }
-        }) {
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("title", title);
-                params.put("body", body);
-                params.put("userId", userId);
-
-                return params;
-            }
-        };
-        Volley.newRequestQueue(this).add(postResquest);
-    }
-
-    private void actualizarWs(final String title, final String body, final String Id) {
-
-        String url = "https://jsonplaceholder.typicode.com/posts/1";
-
-        StringRequest postResquest = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(MainActivity.this, "Resuesta del Servidor = " + response, Toast.LENGTH_LONG).show();
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Error", error.getMessage());
-            }
-        }) {
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("id", "1");
-                params.put("title", title);
-                params.put("body", body);
-                params.put("userId", Id);
-
-                return params;
-            }
-        };
-        Volley.newRequestQueue(this).add(postResquest);
-    }
-
-    private void eliminarWs() {
-
-        String url = "https://jsonplaceholder.typicode.com/posts/1";
-
-        StringRequest postResquest = new StringRequest(Request.Method.DELETE, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                Toast.makeText(MainActivity.this, "Respuesta del Servidor = " + response, Toast.LENGTH_LONG).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Error", error.getMessage());
-            }
-        });
-        Volley.newRequestQueue(this).add(postResquest);
     }
 }
