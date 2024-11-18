@@ -10,26 +10,26 @@
     <EditText
         android:id="@+id/txtUser"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
+        android:layout_height="65dp"
+        android:autofillHints=""
         android:hint="@string/userid"
-        android:autofillHints="" />
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/txtTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
+        android:layout_height="65dp"
+        android:autofillHints=""
         android:hint="@string/title"
-        android:autofillHints="" />
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/txtBody"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine|text"
+        android:layout_height="65dp"
+        android:autofillHints=""
         android:hint="@string/body"
-        android:autofillHints="" />
+        android:inputType="textMultiLine|text" />
 
     <Button
         android:id="@+id/btnEnviar"
